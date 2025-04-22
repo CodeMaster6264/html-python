@@ -1,0 +1,28 @@
+  <div class="my-bookings">
+        <h3>Your Bookings</h3>
+        {% if bookings %}
+            <ul>
+                {% for booking in bookings %}
+                    <li>
+                        <div class="booking-info">
+                            <p><strong>Name:</strong> {{ booking.name }}</p>
+                            <p><strong>Product:</strong> {{ booking.product_type }}</p>
+                            <p><strong>Service:</strong> {{ booking.service_type }}</p>
+                            <p><strong>Date:</strong> {{ booking.date }}</p>
+                            <p><strong>Time:</strong> {{ booking.time }}</p>
+                        </div>
+                        <div class="booking-actions">
+                            <a href="{% url 'edit-booking' booking.id %}" class="edit-booking" title="Edit Booking">
+                                <img src="{% static 'images/edit-icon.png' %}" alt="Edit" class="edit-icon">
+                            </a>
+                            <a href="{% url 'delete-booking' booking.id %}" class="delete-booking" onclick="return confirm('Are you sure you want to delete this booking?');" title="Delete Booking">
+                                <img src="{% static 'images/delete-icon.png' %}" alt="Delete" class="delete-icon">
+                            </a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You haven't booked any services yet.</p>
+        {% endif %}
+    </div>
