@@ -1,0 +1,5 @@
+@login_required
+def dashboard(request):
+    username = request.user.username
+    bookings = Booking.objects.filter(user=request.user)
+    return render(request, 'dashboard.html', {'username': username, 'bookings': bookings})
